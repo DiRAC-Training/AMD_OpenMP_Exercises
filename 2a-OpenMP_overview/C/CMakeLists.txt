@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
+
+set(CMAKE_C_COMPILER   amdclang   CACHE STRING "")
+set(CMAKE_CXX_COMPILER amdclang++ CACHE STRING "")
+
 project(Memory_pragmas LANGUAGES C CXX)
 
 set (CMAKE_CXX_STANDARD 17)
