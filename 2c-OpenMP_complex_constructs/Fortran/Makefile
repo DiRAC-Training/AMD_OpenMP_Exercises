@@ -1,7 +1,7 @@
 all: saxpy_gpu_paralleldo saxpy_gpu_target saxpy_gpu_target_teams saxpy_gpu_target_teams_distribute \
      saxpy_gpu_target_parallel_do saxpy_gpu_split_level saxpy_gpu_collapse 
 
-FC = /opt/rocm-6.3.0/bin/amdflang
+FC = amdflang
 
 ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))
 
