@@ -1,3 +1,5 @@
+CXX = amdclang++
+
 EXEC = bigscience
 default: ${EXEC}
 all: ${EXEC}

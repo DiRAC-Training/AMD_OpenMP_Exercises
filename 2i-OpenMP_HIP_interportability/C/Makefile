@@ -1,3 +1,5 @@
+CC = amdclang
+
 EXECUTABLE = ./daxpy
 OBJECTS = daxpy.o daxpy_hip.o
 

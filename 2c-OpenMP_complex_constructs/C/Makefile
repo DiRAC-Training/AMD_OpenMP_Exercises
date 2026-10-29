@@ -1,3 +1,5 @@
+CC = amdclang
+
 all: saxpy_gpu_parallelfor saxpy_gpu_target saxpy_gpu_target_teams saxpy_gpu_target_teams_distribute \
      saxpy_gpu_target_parallel_for saxpy_gpu_split_level saxpy_gpu_collapse 
 

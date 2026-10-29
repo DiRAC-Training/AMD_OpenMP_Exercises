@@ -1,3 +1,5 @@
+FC = amdflang
+
 EXECUTABLE = ./daxpy
 OBJECTS = daxpy_kernel.o hip_interface.o main.o
 

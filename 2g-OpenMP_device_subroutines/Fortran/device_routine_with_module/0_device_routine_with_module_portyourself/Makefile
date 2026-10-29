@@ -1,3 +1,5 @@
+FC = amdflang
+
 #This example was created by Johanna Potyka
 # Copyright (c) 2024 AMD HPC Application Performance Team
 # MIT License

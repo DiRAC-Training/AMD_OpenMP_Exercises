@@ -1,3 +1,5 @@
+CC = amdclang
+
 all: opt_allocation
 
 ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))

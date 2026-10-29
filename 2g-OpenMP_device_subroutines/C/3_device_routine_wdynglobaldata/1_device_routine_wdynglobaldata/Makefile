@@ -1,3 +1,5 @@
+CC = amdclang
+
 EXEC = device_routine
 default: ${EXEC}
 all: ${EXEC}

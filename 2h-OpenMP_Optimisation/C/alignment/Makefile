@@ -1,3 +1,5 @@
+CC = amdclang
+
 all: align_two_kernels_64 align_two_kernels_128 align_two_kernels_256 align_two_kernels_512 align_two_kernels_1024
 
 ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))

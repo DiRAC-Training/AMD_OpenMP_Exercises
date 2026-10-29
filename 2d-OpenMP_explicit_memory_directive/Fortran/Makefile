@@ -1,3 +1,5 @@
+FC = amdflang
+
 all:target_data_structured target_data_unstructured target_data_update
 
 ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))
