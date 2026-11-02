@@ -1,3 +1,5 @@
+CXX = amdclang++
+
 CC = amdclang
 
 all: memorypool

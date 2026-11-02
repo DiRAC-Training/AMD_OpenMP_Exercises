@@ -1,3 +1,5 @@
+CXX = amdclang++
+
 CC = amdclang
 
 all: align_two_kernels_64 align_two_kernels_128 align_two_kernels_256 align_two_kernels_512 align_two_kernels_1024

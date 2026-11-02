@@ -1,3 +1,5 @@
+CXX = amdclang++
+
 CC = amdclang
 
 all: target_data_structured target_data_unstructured target_data_update
