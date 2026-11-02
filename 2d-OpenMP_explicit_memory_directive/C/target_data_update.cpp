@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 #pragma omp target update to(input[:N])
 
 #pragma omp target
-#pragma omp teams parallel for reduction(+:res)
+#pragma omp teams distribute parallel for reduction(+:res)
     for (int i=0; i<N; i++)
       res += final_computation(input[i], tmp[i]);
   }
