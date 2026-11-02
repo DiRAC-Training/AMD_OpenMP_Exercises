@@ -1,4 +1,8 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
+set(CMAKE_C_COMPILER       amdclang   CACHE STRING "")
+set(CMAKE_CXX_COMPILER     amdclang++ CACHE STRING "")
+set(CMAKE_Fortran_COMPILER amdflang   CACHE STRING "")
+
 project(Memory_pragmas LANGUAGES Fortran)
 
 if (NOT CMAKE_BUILD_TYPE)
