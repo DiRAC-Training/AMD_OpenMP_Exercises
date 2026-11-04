@@ -10,10 +10,11 @@
 #include "umpire/Umpire.hpp"
 #include "umpire/strategy/DynamicPoolList.hpp"
 
+#pragma omp requires unified_shared_memory
+
 int main(int argc, char *argv[])
 {
 
-#pragma requires unified_shared memory
 
    // Size of vectors
    int n = 10000000;
