@@ -1,30 +1,23 @@
 CXX = amdclang++
 
-CC = amdclang
-
 all: opt_allocation
 
-ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))
-
-CXX1=$(notdir $(CXX))
-
-ifneq ($(findstring amdclang++,$(CXX1)),)
-  OPENMP_FLAGS = -fopenmp --offload-arch=${ROCM_GPU}
-else ifneq ($(findstring clang++,$(CXX1)),)
-  OPENMP_FLAGS = -fopenmp --offload-arch=${ROCM_GPU}
-else ifneq ($(findstring g++,$(CXX1)),)
-  OPENMP_FLAGS = -fopenmp -foffload=-march=${ROCM_GPU}
-else ifneq ($(findstring CXX,$(CXX1)),)
-  OPENMP_FLAGS = -fopenmp
+ifeq ($(filter clean,$(MAKECMDGOALS)),)
+  ifndef ROCM_GPU
+    ROCM_GPU := $(strip $(shell rocminfo 2>/dev/null | grep -m 1 -E 'gfx[^0]' | sed -e 's/ *Name: *//'))
+  endif
+  ifeq ($(ROCM_GPU),)
+    $(error Could not detect the GPU architecture with rocminfo. Set it by hand, for example: make ROCM_GPU=gfx90a)
+  endif
 endif
 
-CXXFLAGS = -g -O3 -fstrict-aliasing ${OPENMP_FLAGS}
-LDFLAGS = ${OPENMP_FLAGS} -fno-lto -lm
+OPENMP_FLAGS = -fopenmp --offload-arch=$(ROCM_GPU)
+CXXFLAGS = -g -O3 -fstrict-aliasing $(OPENMP_FLAGS)
+LDFLAGS  = $(OPENMP_FLAGS) -fno-lto
+LDLIBS   = -lm
 
-opt_allocation: opt_allocation.o
-	$(CXX) $(LDFLAGS) $^ -o $@
+.PHONY: all clean
 
-# Cleanup
-clean:
-	rm -f *.o opt_allocation
-	rm -rf build
+opt_allocation: opt_allocation.o ; $(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+clean: ; rm -f *.o opt_allocation; rm -rf build
