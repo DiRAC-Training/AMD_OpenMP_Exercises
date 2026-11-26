@@ -5,6 +5,12 @@ FC = amdflang
 
 ROCM_GPU ?= $(strip $(shell rocminfo |grep -m 1 -E gfx[^0]{1} | sed -e 's/ *Name: *//'))
 
+ifeq ($(ROCM_GPU),)
+ifneq ($(MAKECMDGOALS),clean)
+$(error No AMD GPU found by rocminfo - run this on a GPU node)
+endif
+endif
+
 OPENMP_FLAGS = -fopenmp
 OPENMP_OFFLOAD_FLAGS = -fopenmp --offload-arch=${ROCM_GPU}
 
